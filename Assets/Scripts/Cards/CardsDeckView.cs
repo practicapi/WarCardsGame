@@ -9,11 +9,6 @@ public class CardsDeckView
     private Dictionary<int,CardView> _cards;
     private GameObject _deckParent;
 
-    public CardsDeckView()
-    {
-        
-    }
-
     public void SetDeck(List<CardView> cards, GameObject deckParent)
     {
         _deckParent = deckParent;
@@ -51,6 +46,12 @@ public class CardsDeckView
     public void OpenCard(int cardId, Vector3 destinationPoint)
     {
         var cardView = _cards[cardId];
-        cardView.RotateToPoint(destinationPoint);
+        cardView.JumpToPoint(destinationPoint);
+    }
+
+    public void SetDeckRotationAngle(float angle)
+    {
+        Vector3 rotationVector = new Vector3(0, angle, 0);
+        _deckParent.transform.localRotation = Quaternion.Euler(rotationVector);
     }
 }

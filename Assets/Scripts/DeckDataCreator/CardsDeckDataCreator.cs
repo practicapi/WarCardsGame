@@ -25,7 +25,7 @@ public class CardsDeckDataCreator
                 var cardSuit = (CardSuit) suit;
                 var cardData = new CardData(cardUniqueId, value, cardSuit);
 
-                cards[suit * AmountOfSuits + value * AmountOfCardsValues] = cardData;
+                cards[suit * AmountOfCardsValues + value] = cardData;
             }
         }
 

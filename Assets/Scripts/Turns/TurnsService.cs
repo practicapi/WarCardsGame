@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class TurnsService
 {
     public string CurrentTurnPlayerId => _turnsData.CurrentTurnPlayerId;
-    
-    private readonly TurnsData _turnsData;
-    
-    public TurnsService(string currentTurnPlayerId)
-    { 
-        _turnsData = new TurnsData(currentTurnPlayerId);
-    }
 
+    private TurnsData _turnsData;
+
+    public void SetData(string startingPlayerId)
+    {
+        _turnsData = new TurnsData(startingPlayerId);
+    }
+    
     public void ChangeTurnToPlayer(string playerId)
     {
         _turnsData.SetCurrentTurnPlayerId(playerId);

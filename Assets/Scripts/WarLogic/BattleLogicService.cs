@@ -2,6 +2,8 @@ using System.Collections;
 
 public class BattleLogicService
 {
+    public int AmountOfFaceDownCardsWhenWar = 2;
+
     public BattleResult CalculateBattleResult(int player1Card, int player2Card)
     {
         ConvertCardsValueIfAces(ref player1Card, ref player2Card);

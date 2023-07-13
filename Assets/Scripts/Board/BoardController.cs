@@ -17,7 +17,7 @@ public void OnEndTurnEvent()
         _boardCreator = new BoardCreator();
     }
 
-    public void CreateBoard()
+    public void CreateBoardView()
     {
         _boardView = _boardCreator.CreateBoard();
         _boardView.transform.position = Vector3.zero;

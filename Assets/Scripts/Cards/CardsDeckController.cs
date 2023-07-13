@@ -37,4 +37,19 @@ public class CardsDeckController
         _cardsViewCreator.SetDeckColor(deckColor);
         _cardsDeckData = new CardsDeckData(cardsData);
     }
+    
+    public void SetDeckRotationAngleView(float angle)
+    {
+        _cardsDeckView.SetDeckRotationAngle(angle);
+    }
+
+    public CardData DrawCardData()
+    {
+        return _cardsDeckData.DrawCard();
+    }
+
+    public void AddCardsData(CardData[] cardsData)
+    {
+        _cardsDeckData.AddCards(cardsData);
+    }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BoardCreator
 {
-    private const string BoardPrefabPath = "Prefab/CasinoItem/Table_Rectangle_00";
+    private const string BoardPrefabPath = "Prefabs/CasinoItem/Table_Rectangle_00";
 
     public BoardCreator()
     {
