@@ -19,13 +19,13 @@ public class CardsDeckDataCreator
         
         for (int suit = 0; suit < AmountOfSuits; suit++)
         {
-            for (int value = 0; value < AmountOfCardsValues; value++)
+            for (int value = 1; value <= AmountOfCardsValues; value++)
             {
-                var cardUniqueId = value + 1 + suit * AmountOfCardsValues;
+                var cardIndex = suit * AmountOfCardsValues + value - 1;
                 var cardSuit = (CardSuit) suit;
-                var cardData = new CardData(cardUniqueId, value, cardSuit);
+                var cardData = new CardData(cardIndex.ToString(), value, cardSuit);
 
-                cards[suit * AmountOfCardsValues + value] = cardData;
+                cards[cardIndex] = cardData;
             }
         }
 

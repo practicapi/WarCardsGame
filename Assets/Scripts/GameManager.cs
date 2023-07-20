@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public BattleLogicService BattleLogicService { get; private set; }
+    public BattleStateService BattleStateService { get; private set; }
     public PlayerController Player1Controller { get; private set; }
     public PlayerController Player2Controller { get; private set; }
     public BoardController BoardController { get; private set; }
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            new SpaceKeyPressedCommand().Execute();
+            new SpaceKeyPressedCommand().Execute().Forget();
         }
     }
 
@@ -46,16 +47,16 @@ public class GameManager : MonoBehaviour
     {
         var fullCardsDeck = CardsDeckDataCreator.CreateFullShuffledDeck();
         var halfDeckSize = fullCardsDeck.Length / 2;
-        Player1Controller.SetData("Josh", DeckColor.Blue, fullCardsDeck.Take(halfDeckSize));
-        Player2Controller.SetData("Tom", DeckColor.Red, fullCardsDeck.Skip(halfDeckSize));
+        Player1Controller.SetData("Josh", fullCardsDeck.Take(halfDeckSize));
+        Player2Controller.SetData("Tom", fullCardsDeck.Skip(halfDeckSize));
         TurnsService.SetData(Player1Controller.PlayerId);
     }
 
     private void CreateObjectsView()
     {
         BoardController.CreateBoardView();
-        Player1Controller.CreateCardsView();
-        Player2Controller.CreateCardsView();
+        Player1Controller.CreateCardsView(DeckColor.Blue);
+        Player2Controller.CreateCardsView(DeckColor.Red);
     }
 
     private void PrepareObjectsView()
@@ -70,6 +71,6 @@ public class GameManager : MonoBehaviour
         Player2Controller = new PlayerController();
         BoardController = new BoardController();
         TurnsService = new TurnsService();
-        BattleLogicService = new BattleLogicService();
+        BattleStateService = new BattleStateService();
     }
 }
