@@ -96,10 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd5f4098ba8d37429a96ec4e6e4dc99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpPower: 1
   _jumpDuration: 1
-  _jumpRotationMode: 0
-  _moveTurnedDownDuration: 1
+  _moveTurnedDownDuration: 0.5
+  _turnDownJumpPower: 0.05
   _colorToTextureList:
   - DeckColor: 0
     Texture2D: {fileID: 2800000, guid: 6d202b7a67bce7b4ca9ab5f8bf9de3bf, type: 3}

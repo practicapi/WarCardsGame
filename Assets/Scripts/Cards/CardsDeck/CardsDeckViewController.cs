@@ -12,10 +12,14 @@ public class CardsDeckViewController
     private Vector3 _deckBottomPoint;
     private DeckColor _deckColor;
 
-    public void SetDeck(List<CardView> cards, GameObject deckParent, DeckColor deckColor)
+    public void SetDeck(List<CardView> cards, Transform decksParent, DeckColor deckColor)
     {
         _deckColor = deckColor;
-        _deckParent = deckParent.transform;
+        
+        _deckParent = new GameObject("Deck").transform;
+        _deckParent.SetParent(decksParent);
+        _deckParent.position = Vector3.zero;
+        
         SetCards(cards);
     }
 
@@ -35,24 +39,27 @@ public class CardsDeckViewController
         cardView.SetColor(_deckColor);
     }
 
-    public void PileUpCards(string[] cardsIds)
+    public void PileUpCards(string[] topToBottomCardIds)
     {
-        for (int i = 0; i < cardsIds.Length; i++)
+        var cardsAmount = topToBottomCardIds.Length;
+        
+        for (int i = 0; i < cardsAmount; i++)
         {
-            var cardId = cardsIds[i];
+            string cardId = topToBottomCardIds[i];
             var cardView = _cards[cardId];
-            var cardTransform = cardView.transform;
-            var cardPos = cardTransform.position;
-            var newPositionInPile = new Vector3(cardPos.x, cardPos.y + PileVerticalSpaceBetweenCards * i, cardPos.z);
+            cardView.transform.position = _deckBottomPoint + (cardsAmount-i+1) * PileVerticalSpaceBetweenCards * Vector3.up;
             ResetCardRotation(cardView);
-            cardTransform.position = newPositionInPile;
         }
     }
 
-    public void SetDeckPosition(Vector3 position)
+    private void MoveDeckOneUp()
     {
-        var halfOfDeckHeight = PileVerticalSpaceBetweenCards * _cards.Count;
-        _deckParent.position = position + (halfOfDeckHeight + PileVerticalSpaceBetweenCards) * Vector3.up;
+        _deckParent.Translate(Vector3.up*PileVerticalSpaceBetweenCards);
+    }
+
+    public void SetDeckStartingPosition(Vector3 position)
+    {
+        _deckParent.position = position;
         _deckBottomPoint = position;
     }
 
@@ -72,12 +79,13 @@ public class CardsDeckViewController
     {
         await cardView.MoveToPointFacedDown(_deckBottomPoint);
         cardView.transform.SetParent(_deckParent);
-        _deckParent.Translate(Vector3.up*PileVerticalSpaceBetweenCards);
+        MoveDeckOneUp();
     }
 
     public void AddCard(CardView cardView)
     {
         _cards.Add(cardView.ID, cardView);
+        cardView.transform.SetParent(_deckParent);
     }
 
     public Vector3 GetDeckViewPosition()

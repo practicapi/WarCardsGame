@@ -9,6 +9,7 @@ using UnityEngine;
 public class CollectDrawnCardsToPlayersDeckCommand : BaseCommand<CollectDrawnCardsToPlayersDeckCommandData>
 {
     private const float SecondsBetweenCardsCollected = 0.25f;
+    private const float SecondsShowingCardsRevealed = 0.5f;
     
     private readonly PlayerController _winnerPlayerController;
     private readonly BattleStateService _battleStateService;
@@ -23,10 +24,15 @@ public class CollectDrawnCardsToPlayersDeckCommand : BaseCommand<CollectDrawnCar
     {
         var player1Controller = _gm.Player1Controller;
         var player2Controller = _gm.Player2Controller;
+
+        player1Controller.RevealAllCardsInDrawnPile();
+        player2Controller.RevealAllCardsInDrawnPile();
         
+        await UniTask.Delay(TimeSpan.FromSeconds(SecondsShowingCardsRevealed));
+
         // it doesn't matter which player we choose, because they ALWAYS have the same number of drawn cards
         var numberOfCardsDrawnForEachPlayer = player1Controller.GetDrawnCardsAmountData();
-
+        
         for (int i = 0; i < numberOfCardsDrawnForEachPlayer; i++)
         {
             CollectCardFromPlayersPile(player1Controller).Forget();

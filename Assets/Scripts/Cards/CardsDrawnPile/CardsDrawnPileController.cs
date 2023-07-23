@@ -67,6 +67,11 @@ public class CardsDrawnPileController
     {
         _cardsDrawnPileViewController.SetPileRotationAngleView(angle);
     }
+
+    public void RevealAllCardsInDrawnPile()
+    {
+        _cardsDrawnPileViewController.RevealAllCardsInDrawnPile();
+    }
 }
 
 public class CardsDrawnPileData

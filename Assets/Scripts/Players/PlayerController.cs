@@ -120,4 +120,9 @@ public class PlayerController
     {
         _cardsDrawnPileController.SetPileRotationAngleView(angle);
     }
+
+    public void RevealAllCardsInDrawnPile()
+    {
+        _cardsDrawnPileController.RevealAllCardsInDrawnPile();
+    }
 }

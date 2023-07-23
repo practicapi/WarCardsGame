@@ -18,9 +18,8 @@ public class CardsDeckController
 
     public void CreateCardsView(Transform parent, DeckColor deckColor)
     {
-        var cards = _cardsViewCreator.CreateCards(_cardsDeckData.Cards.ToArray(), out var deckParent);
-        deckParent.transform.SetParent(parent);
-        _cardsDeckViewController.SetDeck(cards, deckParent, deckColor);
+        var cards = _cardsViewCreator.CreateCards(_cardsDeckData.Cards.ToArray());
+        _cardsDeckViewController.SetDeck(cards, parent, deckColor);
     }
 
     public void PileUpCardsView()
@@ -31,7 +30,7 @@ public class CardsDeckController
 
     public void SetDeckViewPosition(Vector3 position)
     {
-        _cardsDeckViewController.SetDeckPosition(position);
+        _cardsDeckViewController.SetDeckStartingPosition(position);
     }
     
     public Vector3 GetDeckViewPosition()

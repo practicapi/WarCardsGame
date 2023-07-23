@@ -8,17 +8,8 @@ public class BattleLogicService
     public BattleState CalculateBattleResult(int player1Card, int player2Card)
     {
         ConvertCardsValueIfAces(ref player1Card, ref player2Card);
-        BattleState battleState;
+        BattleState battleState = player1Card > player2Card ? BattleState.Player1Win : player1Card < player2Card ? BattleState.Player2Win : BattleState.War;
         
-        if (player1Card > player2Card)
-        {
-            battleState = BattleState.Player1Win;
-        }
-        else
-        {
-            battleState= player2Card > player1Card ? BattleState.Player2Win : BattleState.War;
-        }
-
         if (true)
         {
             battleState = Mathf.Abs(player2Card-player1Card)<=4 ? BattleState.War: battleState;

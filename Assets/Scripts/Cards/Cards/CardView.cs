@@ -10,27 +10,22 @@ public class CardView : MonoBehaviour
     private static readonly int MainTex = Shader.PropertyToID("_MainTex");
 
     [Header("Jump")]
-    [SerializeField] private float _jumpPower = 1f;
     [SerializeField] private float _jumpDuration = 1f;
-    [SerializeField] private RotateMode _jumpRotationMode = RotateMode.Fast;
     
     [Header("Move Turned Down")]
     [SerializeField] private float _moveTurnedDownDuration = 1f;
-
+    [SerializeField] private float _turnDownJumpPower = 1f;
     [SerializeField] private List<ColorToTexture> _colorToTextureList;
     [SerializeField] private MeshRenderer _renderer;
     private Material _material;
+    private Transform _transform;
     public string ID { get; private set; }
     
     public void Setup(string id)
     {
         ID = id;
         _material = _renderer.material;
-    }
-
-    public async UniTask TurnFaceUp()
-    {
-        
+        _transform = transform;
     }
 
     public void SetColor(DeckColor color)
@@ -71,10 +66,25 @@ public class CardView : MonoBehaviour
         await UniTask.WhenAll(tasks);
     }
 
+    public void FaceUp()
+    {
+        // var localLeft = -transform.right;
+        //
+        // var a = VectorUtils.RotateVectorAroundAxis(pivotToStartingPositionVector, localLeft, 180);
+        // var halfACircleAngles = new Vector3(HalfCircleRotation, 0, 0);
+        // var endRotation = halfACircleAngles + transform.localRotation.eulerAngles;
+        
+        
+        //_transform.localRotation = 180f.ToQuaternionAroundYAxis();
+        
+        _transform.localRotation = Quaternion.Euler(0,HalfCircleRotation,0);
+    }
+    
     public async UniTask MoveToPointFacedDown(Vector3 destinationPoint)
     {
-        var rotationEulerAngles = transform.rotation.eulerAngles;
-        await transform.DOLocalRotate(new Vector3(rotationEulerAngles.x, rotationEulerAngles.y, HalfCircleRotation), _moveTurnedDownDuration * 0.25f);
+        var rotationEulerAngles = _transform.localRotation.eulerAngles;
+        transform.DOLocalJump(_transform.localPosition, _turnDownJumpPower, 1, _moveTurnedDownDuration);
+        await transform.DOLocalRotate(new Vector3(rotationEulerAngles.x, rotationEulerAngles.y, HalfCircleRotation), _moveTurnedDownDuration);
         await transform.DOMove(destinationPoint, _moveTurnedDownDuration);
     }
 }

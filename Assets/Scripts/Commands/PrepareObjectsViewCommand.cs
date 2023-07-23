@@ -22,12 +22,12 @@ public class PrepareObjectsViewCommand : BaseCommand
     {
         var boardSurfaceCenter = _board.GetBoardSurfaceCenter();
         
-        _player1Controller.PileUpCardsDeckView();
         _player1Controller.SetDeckPositionView(boardSurfaceCenter - DeckOffsetFromCenter);
+        _player1Controller.PileUpCardsDeckView();
         _player1Controller.UpdateDrawnPilePositionRelativeToDeckView();
         
-        _player2Controller.PileUpCardsDeckView();
         _player2Controller.SetDeckPositionView(boardSurfaceCenter + DeckOffsetFromCenter);
+        _player2Controller.PileUpCardsDeckView();
         _player2Controller.SetDeckRotationAngleView(Player2DeckRotation);
         _player2Controller.SetPileRotationAngleView(Player2DeckRotation);
         _player2Controller.UpdateDrawnPilePositionRelativeToDeckView();

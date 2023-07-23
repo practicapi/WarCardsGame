@@ -42,8 +42,8 @@ public class CardsDrawnPileViewController
 
     private Vector3 CalculateCardPositionOffset()
     {
-        var index = _cardsDrawnPile.Count - 1;
-        var horizontalOffsetBetweenCards = HorizontalOffsetBetweenCards * index * _pileParent.right;
+        var index = _cardsDrawnPile.Count;
+        var horizontalOffsetBetweenCards = HorizontalOffsetBetweenCards * (index-1) * _pileParent.right;
         var verticalOffsetBetweenCards = VerticalOffsetBetweenCards * index * _pileParent.up;
         
         return horizontalOffsetBetweenCards + verticalOffsetBetweenCards;
@@ -64,5 +64,13 @@ public class CardsDrawnPileViewController
     public void SetPileRotationAngleView(float angle)
     {
         _pileParent.localRotation = angle.ToQuaternionAroundYAxis();
+    }
+
+    public void RevealAllCardsInDrawnPile()
+    {
+        foreach (var cardView in _cardsDrawnPile)
+        {
+            cardView.FaceUp();
+        }
     }
 }

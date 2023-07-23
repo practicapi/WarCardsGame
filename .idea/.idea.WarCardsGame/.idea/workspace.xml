@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96d88ccc-ddf8-467b-aca7-67d0f246843f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Commands/DrawFacedDownCardsForeachPlayerCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Commands/DrawFacedDownCardsForeachPlayerCommand.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WarCardsGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WarCardsGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ImportedAssets/Playing Cards/Image Effects/Shaders/Reversibl_Draw.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ImportedAssets/Playing Cards/Image Effects/Shaders/Reversibl_Draw.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/Blank_PlayingCards_Blank_00.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/Blank_PlayingCards_Blank_00.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Cards/Cards/CardView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Cards/Cards/CardView.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Cards/CardsDeck/CardsDeckController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Cards/CardsDeck/CardsDeckController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Cards/CardsDeck/CardsDeckViewController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Cards/CardsDeck/CardsDeckViewController.cs" afterDir="false" />
@@ -13,14 +11,9 @@
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Cards/CardsDrawnPile/CardsDrawnPileController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Cards/CardsDrawnPile/CardsDrawnPileController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Cards/CardsDrawnPile/CardsDrawnPileViewController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Cards/CardsDrawnPile/CardsDrawnPileViewController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Commands/CollectDrawnCardsToPlayersDeckCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Commands/CollectDrawnCardsToPlayersDeckCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Commands/DrawOneCardForeachPlayerCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Commands/DrawOneCardForeachPlayerCommand.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Commands/PrepareObjectsViewCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Commands/PrepareObjectsViewCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Commands/SpaceKeyPressedCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Commands/SpaceKeyPressedCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extenstions/VectorUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extenstions/VectorUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Players/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/PlayerController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/WarLogic/BattleLogicService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/WarLogic/BattleLogicService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/WarLogic/BattleStateService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/WarLogic/BattleStateService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,24 +135,5 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Commands/CollectDrawnCardsToPlayersDeckCommand.cs</url>
-          <line>27</line>
-          <properties documentPath="C:\Users\Raz\Documents\PF\Raz\Work\Dev\Unity\WarCardsGame\Assets\Scripts\Commands\CollectDrawnCardsToPlayersDeckCommand.cs" initialLine="27" containingFunctionPresentation="method 'Execute'">
-            <startOffsets>
-              <option value="1003" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1085" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
