@@ -37,7 +37,7 @@ public class CardsDrawnPileController
     {
         await _cardsDrawnPileViewController.DrawCardToPile(cardView, shouldFaceUp);
     }
-    
+
     public CardView RemoveCardViewFromPile()
     {
         return _cardsDrawnPileViewController.RemoveCardFromPile();
@@ -61,6 +61,11 @@ public class CardsDrawnPileController
     public void SetPileViewPosition(Vector3 distanceBetweenDeckAndPile)
     {
         _cardsDrawnPileViewController.SetPilePosition(distanceBetweenDeckAndPile);
+    }
+
+    public void SetPileRotationAngleView(float angle)
+    {
+        _cardsDrawnPileViewController.SetPileRotationAngleView(angle);
     }
 }
 

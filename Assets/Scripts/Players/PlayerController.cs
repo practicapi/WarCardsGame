@@ -69,11 +69,11 @@ public class PlayerController
         _deckController.AddCardsData(cardsData);
     }
 
-    public async UniTask DrawCardFromDeckToPileView(string cardId)
+    public async UniTask DrawCardFromDeckToPileView(string cardId, bool isFacedUp = true)
     {
         var cardView = _deckController.RemoveCardView(cardId);
-        await _cardsDrawnPileController.DrawCardViewToPile(cardView);
         _cardsDrawnPileController.AddCardViewToPile(cardView);
+        await _cardsDrawnPileController.DrawCardViewToPile(cardView, isFacedUp);
     }
 
     public async UniTask CollectCardsView(List<string> cardsIds)
@@ -86,9 +86,9 @@ public class PlayerController
         return _cardsDrawnPileController.GetDrawnCardsView();
     }
     
-    public Stack<CardData> GetDrawnCardsData()
+    public int GetDrawnCardsAmountData()
     {
-        return _cardsDrawnPileController.GetDrawnCardsData();
+        return _cardsDrawnPileController.GetDrawnCardsData().Count;
     }
 
     public CardData RemoveCardDataFromPile()
@@ -114,5 +114,10 @@ public class PlayerController
     public async UniTask CollectCardToBottomOfDeckView(CardView cardView)
     {
         await _deckController.CollectCardToDeckBottomView(cardView);
+    }
+
+    public void SetPileRotationAngleView(float angle)
+    {
+        _cardsDrawnPileController.SetPileRotationAngleView(angle);
     }
 }

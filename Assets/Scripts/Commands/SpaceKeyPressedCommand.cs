@@ -23,7 +23,10 @@ public class SpaceKeyPressedCommand : BaseCommand
             case BattleState.Player2Win:
                 await new CollectDrawnCardsToPlayersDeckCommand(new CollectDrawnCardsToPlayersDeckCommandData(_gm.Player2Controller)).Execute(); 
                 break;
-            case BattleState.War: break;
+            case BattleState.War:
+                await new DrawFacedDownCardsForeachPlayerCommand().Execute(); 
+                await new DrawOneCardForeachPlayerCommand().Execute();
+                break;
         }
     }
 }

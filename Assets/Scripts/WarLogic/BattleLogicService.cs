@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEngine;
 
 public class BattleLogicService
 {
@@ -7,13 +8,23 @@ public class BattleLogicService
     public BattleState CalculateBattleResult(int player1Card, int player2Card)
     {
         ConvertCardsValueIfAces(ref player1Card, ref player2Card);
+        BattleState battleState;
         
         if (player1Card > player2Card)
         {
-            return BattleState.Player1Win;
+            battleState = BattleState.Player1Win;
+        }
+        else
+        {
+            battleState= player2Card > player1Card ? BattleState.Player2Win : BattleState.War;
         }
 
-        return player2Card > player1Card ? BattleState.Player2Win : BattleState.War;
+        if (true)
+        {
+            battleState = Mathf.Abs(player2Card-player1Card)<=4 ? BattleState.War: battleState;
+        }
+
+        return battleState;
     }
 
     private void ConvertCardsValueIfAces(ref int player1Card, ref int player2Card)

@@ -7,8 +7,13 @@ public static class VectorUtils
         return (point2 - point1) * 0.5f + point1;
     }
     
-    public static Vector3 RotateVectorAroundAxis(Vector3 vector, Vector3 axis, float degrees)
+    public static Vector3 RotateVectorAroundAxis(Vector3 vector, Vector3 axis, float angleInDegrees)
     {
-        return Quaternion.AngleAxis(degrees, axis) * vector;
+        return Quaternion.AngleAxis(angleInDegrees, axis) * vector;
+    }
+    
+    public static Quaternion ToQuaternionAroundYAxis(this float angleInDegrees)
+    {
+        return Quaternion.Euler(new Vector3(0, angleInDegrees, 0));
     }
 }

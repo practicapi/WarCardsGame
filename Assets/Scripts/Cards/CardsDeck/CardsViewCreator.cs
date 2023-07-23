@@ -18,14 +18,15 @@ public class CardsViewCreator
         deckParent.transform.position = Vector3.zero;
         
         var cardsViews = new List<CardView>();
+        var cardGOPath = "Prefabs/" + CardPrefab;
+        var cardPrefab = Resources.Load<GameObject>(cardGOPath);
 
         foreach (var cardData in cardsData)
         {
             var suitName = cardData.Suit.ToString();
             var texturePath = "Textures/" + string.Format(CardTextureFormat, suitName, GetNumberAsTwoDigitsString(cardData.Value));
             var cardTexture = Resources.Load<Texture2D>(texturePath);
-            var cardGOPath = "Prefabs/" + CardPrefab;
-            var cardGO = GameObject.Instantiate(Resources.Load<GameObject>(cardGOPath), deckParent.transform, true);
+            var cardGO = GameObject.Instantiate(cardPrefab,deckParent.transform, true);
             cardGO.name = "Card_" + cardData.Value + "_" + suitName;
             cardGO.transform.position = Vector3.zero;
             cardGO.GetComponent<MeshRenderer>().material.SetTexture("_MainTex2", cardTexture);

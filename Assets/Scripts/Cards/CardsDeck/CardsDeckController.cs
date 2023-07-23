@@ -68,6 +68,7 @@ public class CardsDeckController
     {
         await _cardsDeckViewController.MoveCardToDeckBottom(cardView);
         _cardsDeckViewController.SetCardColorToDeckColor(cardView);
+        _cardsDeckViewController.ResetCardRotation(cardView);
     }
 
     public void AddCardView(CardView cardView)

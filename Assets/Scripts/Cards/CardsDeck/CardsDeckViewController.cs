@@ -1,12 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using DG.Tweening;
 
 public class CardsDeckViewController
 {
+    private static readonly Quaternion FaceDownRotation = Quaternion.Euler(0,0,180);
     private const float PileVerticalSpaceBetweenCards = 0.0005f;
+    
     private Dictionary<string,CardView> _cards;
     private Transform _deckParent;
     private Vector3 _deckBottomPoint;
@@ -22,8 +22,12 @@ public class CardsDeckViewController
     private void SetCards(List<CardView> cards)
     {
         _cards = new Dictionary<string, CardView>();
-        cards.ForEach(AddCard);
-        cards.ForEach(SetCardColorToDeckColor);
+        
+        foreach(var cardView in cards)
+        {
+            AddCard(cardView);
+            SetCardColorToDeckColor(cardView);
+        }
     }
 
     public void SetCardColorToDeckColor(CardView cardView)
@@ -40,10 +44,8 @@ public class CardsDeckViewController
             var cardTransform = cardView.transform;
             var cardPos = cardTransform.position;
             var newPositionInPile = new Vector3(cardPos.x, cardPos.y + PileVerticalSpaceBetweenCards * i, cardPos.z);
-            
+            ResetCardRotation(cardView);
             cardTransform.position = newPositionInPile;
-            var faceDownRotation = Quaternion.Euler(0,0,180);
-            cardTransform.localRotation = faceDownRotation;
         }
     }
 
@@ -56,8 +58,7 @@ public class CardsDeckViewController
 
     public void SetDeckRotationAngle(float angle)
     {
-        Vector3 rotationVector = new Vector3(0, angle, 0);
-        _deckParent.localRotation = Quaternion.Euler(rotationVector);
+        _deckParent.localRotation = angle.ToQuaternionAroundYAxis();
     }
 
     public CardView RemoveCard(string cardId)
@@ -87,5 +88,10 @@ public class CardsDeckViewController
     public Vector3 GetDeckViewForward()
     {
         return _deckParent.forward;
+    }
+
+    public void ResetCardRotation(CardView cardView)
+    {
+        cardView.transform.localRotation = FaceDownRotation;
     }
 }

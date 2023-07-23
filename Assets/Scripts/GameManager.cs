@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public BattleStateService BattleStateService { get; private set; }
+    public BattleLogicService BattleLogicService { get; private set; }
     public PlayerController Player1Controller { get; private set; }
     public PlayerController Player2Controller { get; private set; }
     public BoardController BoardController { get; private set; }
@@ -71,6 +72,7 @@ public class GameManager : MonoBehaviour
         Player2Controller = new PlayerController();
         BoardController = new BoardController();
         TurnsService = new TurnsService();
+        BattleLogicService = new BattleLogicService();
         BattleStateService = new BattleStateService();
     }
 }

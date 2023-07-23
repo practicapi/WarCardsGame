@@ -56,17 +56,17 @@ public class CardView : MonoBehaviour
         var currentDegrees = 0f;
         var localLeft = -transform.right;
         var pivotToStartingPositionVector = startingPosition - pivotPoint;
-
+        var xOffset = (destinationPoint - startingPosition).x;
         var tweenPosition = DOTween.To(
             () => currentDegrees,
             x =>
             {
                 currentDegrees = x;
-                transform.position = VectorUtils.RotateVectorAroundAxis(pivotToStartingPositionVector, localLeft, currentDegrees) + pivotPoint;
+                var vectorXOffset = xOffset * (currentDegrees / HalfCircleRotation) * Vector3.right;
+                transform.position = vectorXOffset+VectorUtils.RotateVectorAroundAxis(pivotToStartingPositionVector, localLeft, currentDegrees) + pivotPoint;
             },
             HalfCircleRotation
             , _jumpDuration).ToUniTask();
-
         tasks.Add(tweenPosition);
         await UniTask.WhenAll(tasks);
     }

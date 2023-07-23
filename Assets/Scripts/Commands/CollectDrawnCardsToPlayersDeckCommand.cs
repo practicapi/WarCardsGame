@@ -24,10 +24,10 @@ public class CollectDrawnCardsToPlayersDeckCommand : BaseCommand<CollectDrawnCar
         var player1Controller = _gm.Player1Controller;
         var player2Controller = _gm.Player2Controller;
         
-        // it doesn't matter which player we choose, because they have the same number of drawn cards
-        var numberOfCardsDrawnForEachPlayer = player1Controller.GetDrawnCardsData();
+        // it doesn't matter which player we choose, because they ALWAYS have the same number of drawn cards
+        var numberOfCardsDrawnForEachPlayer = player1Controller.GetDrawnCardsAmountData();
 
-        for (int i = 0; i < numberOfCardsDrawnForEachPlayer.Count; i++)
+        for (int i = 0; i < numberOfCardsDrawnForEachPlayer; i++)
         {
             CollectCardFromPlayersPile(player1Controller).Forget();
             await UniTask.Delay(TimeSpan.FromSeconds(SecondsBetweenCardsCollected));
@@ -58,10 +58,10 @@ public class CollectDrawnCardsToPlayersDeckCommand : BaseCommand<CollectDrawnCar
 
     private async UniTask CollectCardFromPlayersPile(PlayerController playerController)
     {
+        _winnerPlayerController.AddDeckCardsData(playerController.RemoveCardDataFromPile());
+        
         var playerCardView = playerController.RemoveCardViewFromPile();
         _winnerPlayerController.AddDeckCardView(playerCardView);
         await _winnerPlayerController.CollectCardToBottomOfDeckView(playerCardView);
-        
-        _winnerPlayerController.AddDeckCardsData(playerController.RemoveCardDataFromPile());
     }
 }

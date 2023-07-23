@@ -25,7 +25,6 @@ public class DrawOneCardForeachPlayerCommand : BaseCommand
         
         await DrawCardViewFromEachPlayer(player1Card, player2Card);
         
-        _player1Controller.AddDeckCardsData();
         _battleStateService.RecalculateCurrentBattleState(player1Card.Value, player2Card.Value);
     }
     

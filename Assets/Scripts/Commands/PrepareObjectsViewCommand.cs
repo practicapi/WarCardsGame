@@ -29,6 +29,7 @@ public class PrepareObjectsViewCommand : BaseCommand
         _player2Controller.PileUpCardsDeckView();
         _player2Controller.SetDeckPositionView(boardSurfaceCenter + DeckOffsetFromCenter);
         _player2Controller.SetDeckRotationAngleView(Player2DeckRotation);
+        _player2Controller.SetPileRotationAngleView(Player2DeckRotation);
         _player2Controller.UpdateDrawnPilePositionRelativeToDeckView();
     }
 }
