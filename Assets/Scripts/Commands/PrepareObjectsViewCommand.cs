@@ -21,17 +21,16 @@ public class PrepareObjectsViewCommand : BaseCommand
     public override async UniTask Execute()
     {
         var boardSurfaceCenter = _board.GetBoardSurfaceCenter();
-        _player1Controller.SetViewsPositions();
-        _player1Controller.SetDeckPositionView(boardSurfaceCenter - DeckOffsetFromCenter);
+        
+        _player1Controller.SetPositionView(boardSurfaceCenter);
         _player1Controller.PileUpCardsDeckView();
-        _player1Controller.UpdateDrawnPilePositionRelativeToDeckView();
+        _player1Controller.UpdateCardsLeftTextView();
         _player1Controller.SetColor(DeckColor.Red, new Color(255, 52, 54, 255));
             
-        _player2Controller.SetDeckPositionView(boardSurfaceCenter + DeckOffsetFromCenter);
+        _player2Controller.SetPositionView(boardSurfaceCenter);
+        _player2Controller.SetRotationAngleView(Player2DeckRotation);
         _player2Controller.PileUpCardsDeckView();
-        _player2Controller.SetDeckRotationAngleView(Player2DeckRotation);
-        _player2Controller.SetPileRotationAngleView(Player2DeckRotation);
-        _player2Controller.UpdateDrawnPilePositionRelativeToDeckView();
-        _player1Controller.SetColor(DeckColor.Blue, new Color(55, 58, 119, 255));
+        _player2Controller.UpdateCardsLeftTextView();
+        _player2Controller.SetColor(DeckColor.Blue, new Color(55, 58, 119, 255));
     }
 }

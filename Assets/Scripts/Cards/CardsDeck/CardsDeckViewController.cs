@@ -6,21 +6,21 @@ public class CardsDeckViewController
 {
     private static readonly Quaternion FaceDownRotation = Quaternion.Euler(0,0,180);
     private const float PileVerticalSpaceBetweenCards = 0.0005f;
+    private float _deckStartingYPosition;
     
     private Dictionary<string,CardView> _cards;
     private Transform _deckParent;
-    private Vector3 _deckBottomPoint;
     private DeckColor _deckColor;
 
     public void SetDeck(List<CardView> cards, Transform decksParent)
     {
-        _deckParent = new GameObject("Deck").transform;
-        _deckParent.SetParent(decksParent);
-        _deckParent.position = Vector3.zero;
+        _deckParent = decksParent;
+        _deckStartingYPosition = _deckParent.position.y;
         
         SetCards(cards);
     }
 
+    
     private void SetCards(List<CardView> cards)
     {
         _cards = new Dictionary<string, CardView>();
@@ -54,7 +54,7 @@ public class CardsDeckViewController
         {
             string cardId = topToBottomCardIds[i];
             var cardView = _cards[cardId];
-            cardView.transform.position = _deckBottomPoint + (cardsAmount-i+1) * PileVerticalSpaceBetweenCards * Vector3.up;
+            cardView.transform.position = _deckParent.position + (cardsAmount - i + 1) * PileVerticalSpaceBetweenCards * Vector3.up;
             ResetCardRotation(cardView);
         }
     }
@@ -62,17 +62,6 @@ public class CardsDeckViewController
     private void MoveDeckOneUp()
     {
         _deckParent.Translate(Vector3.up*PileVerticalSpaceBetweenCards);
-    }
-
-    public void SetDeckStartingPosition(Vector3 position)
-    {
-        _deckParent.position = position;
-        _deckBottomPoint = position;
-    }
-
-    public void SetDeckRotationAngle(float angle)
-    {
-        _deckParent.localRotation = angle.ToQuaternionAroundYAxis();
     }
 
     public CardView RemoveCard(string cardId)
@@ -84,7 +73,8 @@ public class CardsDeckViewController
     
     public async UniTask MoveCardToDeckBottom(CardView cardView)
     {
-        await cardView.MoveToPointFacedDown(_deckBottomPoint);
+        var deckPosition = _deckParent.position;
+        await cardView.MoveToPointFacedDown(new Vector3(deckPosition.x, _deckStartingYPosition, deckPosition.z));
         cardView.transform.SetParent(_deckParent);
         MoveDeckOneUp();
     }
@@ -93,11 +83,6 @@ public class CardsDeckViewController
     {
         _cards.Add(cardView.ID, cardView);
         cardView.transform.SetParent(_deckParent);
-    }
-
-    public Vector3 GetDeckViewPosition()
-    {
-        return _deckParent.position;
     }
 
     public Vector3 GetDeckViewForward()

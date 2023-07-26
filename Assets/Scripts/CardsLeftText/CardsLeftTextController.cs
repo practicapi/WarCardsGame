@@ -15,7 +15,9 @@ public class CardsLeftTextController
     public void CreateTextView(Transform parent)
     {
         _cardsLeftTextView = _creator.CreateCardsLeftText();
-        _cardsLeftTextView.transform.SetParent(parent);
+        var viewTransform = _cardsLeftTextView.transform;
+        viewTransform.SetParent(parent);
+        viewTransform.localPosition = Vector3.zero;
     }
     
     public void SetColorView(Color color)

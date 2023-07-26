@@ -26,43 +26,29 @@ public class CollectDrawnCardsToPlayersDeckCommand : BaseCommand<CollectDrawnCar
 
     public override async UniTask Execute()
     {
-        if (_battleStateService.DidPerformAWarDuringCurrentBattle)
+        if (_battleStateService.DidPerformAWarDuringCurrentBattle) // todo move ouside
         {
             await RevealAllCardsInDrawnPiles();
         }
-
         
+        await CollectCards();
+
+        _battleStateService.ResetBattleState(); // todo: move from here outside
+    }
+
+    private async Task CollectCards()
+    {
         var numberOfCardsDrawnForEachPlayer = _player1Controller.GetDrawnCardsAmountData(); // it doesn't matter which player we choose,
                                                                                             // because they ALWAYS have the same number of drawn cards
         var numOfPlayers = 2;
         var secondsBetweenCardsCollected = TotalSecondsToCollectAllCards / (numberOfCardsDrawnForEachPlayer * numOfPlayers);
         var timeBetweenCardsCollected = TimeSpan.FromSeconds(secondsBetweenCardsCollected);
-        
+
         for (int i = 0; i < numberOfCardsDrawnForEachPlayer; i++)
         {
             await CollectCardFromPlayersPile(_player1Controller, timeBetweenCardsCollected);
             await CollectCardFromPlayersPile(_player2Controller, timeBetweenCardsCollected);
         }
-
-        _battleStateService.ResetBattleState(); // todo: move from here outside
-
-        //
-        // foreach (var drawnCard in totalDrawnCardsData)
-        // {
-        //     
-        // }
-        //
-        //
-        // winnerPlayerController.AddDeckCardsData(totalDrawnCardsData);
-        //
-        // var player1DrawnCardsView = _player1Controller.GetDrawnCardsView();
-        // var player2DrawnCardsView = _player2Controller.GetDrawnCardsView();
-        // var totalDrawnCardsView = player1DrawnCardsView.Concat(player2DrawnCardsView).ToArray();
-        //
-        // await winnerPlayerController.AddCardsToDeckBottomView(totalDrawnCardsData);
-        //
-        // _player1Controller.ClearCardsDrawnData();
-        // _player2Controller.ClearCardsDrawnData();
     }
 
     private async UniTask RevealAllCardsInDrawnPiles()
@@ -76,11 +62,10 @@ public class CollectDrawnCardsToPlayersDeckCommand : BaseCommand<CollectDrawnCar
     private async UniTask CollectCardFromPlayersPile(PlayerController playerController, TimeSpan timeToWait)
     {
         _winnerPlayerController.AddDeckCardsData(playerController.RemoveCardDataFromPile());
-        
         var playerCardView = playerController.RemoveCardViewFromPile();
         _winnerPlayerController.AddDeckCardView(playerCardView);
         _winnerPlayerController.CollectCardToBottomOfDeckView(playerCardView).Forget();
-        
+
         await UniTask.Delay(timeToWait);
     }
 }

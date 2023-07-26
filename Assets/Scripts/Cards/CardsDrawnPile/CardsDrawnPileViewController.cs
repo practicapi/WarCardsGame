@@ -17,15 +17,9 @@ public class CardsDrawnPileViewController
 
     public void CreatePile(Transform parent)
     {
-        _pileParent = new GameObject("PileParent").transform;
-        _pileParent.SetParent(parent);
+        _pileParent = parent;
     }
-    
-    public void SetPilePosition(Vector3 position)
-    {
-        _pileParent.transform.position = position;
-    }
-    
+
     public void AddCardToPile(CardView cardView)
     {
         _cardsDrawnPile.Push(cardView);

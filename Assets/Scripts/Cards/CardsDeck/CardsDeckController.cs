@@ -9,7 +9,8 @@ public class CardsDeckController
     private CardsDeckData _cardsDeckData;
     private CardsViewCreator _cardsViewCreator;
     private CardsDeckViewController _cardsDeckViewController;
-    
+    public int CardsAmount => _cardsDeckData.Cards.Count;
+
     public CardsDeckController()
     {
         _cardsViewCreator = new CardsViewCreator();
@@ -33,24 +34,9 @@ public class CardsDeckController
         _cardsDeckViewController.PileUpCards(cardsIdsArray);
     }
 
-    public void SetDeckViewPosition(Vector3 position)
-    {
-        _cardsDeckViewController.SetDeckStartingPosition(position);
-    }
-    
-    public Vector3 GetDeckViewPosition()
-    {
-        return _cardsDeckViewController.GetDeckViewPosition();
-    }
-
     public void SetCardsData(IEnumerable<CardData> cardsData)
     {
         _cardsDeckData = new CardsDeckData(cardsData);
-    }
-    
-    public void SetDeckRotationAngleView(float angle)
-    {
-        _cardsDeckViewController.SetDeckRotationAngle(angle);
     }
 
     public CardData DrawCardData()
@@ -80,8 +66,8 @@ public class CardsDeckController
         _cardsDeckViewController.AddCard(cardView);
     }
 
-    public Vector3 GetDeckViewForward()
+    public void SetStartingPosition()
     {
-        return _cardsDeckViewController.GetDeckViewForward();
+        
     }
 }

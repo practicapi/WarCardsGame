@@ -58,11 +58,6 @@ public class CardsDrawnPileController
         _cardsDrawnPileData.ClearCards();
     }
 
-    public void SetPileViewPosition(Vector3 distanceBetweenDeckAndPile)
-    {
-        _cardsDrawnPileViewController.SetPilePosition(distanceBetweenDeckAndPile);
-    }
-
     public void SetPileRotationAngleView(float angle)
     {
         _cardsDrawnPileViewController.SetPileRotationAngleView(angle);

@@ -50,23 +50,6 @@ public class PlayerController
         _deckController.PileUpCardsView();
     }
 
-    public void SetDeckPositionView(Vector3 position)
-    {
-        _deckController.SetDeckViewPosition(position);
-    }
-
-    public void UpdateDrawnPilePositionRelativeToDeckView()
-    {
-        var deckPosition = _deckController.GetDeckViewPosition();
-        var deckForwardVector = _deckController.GetDeckViewForward();
-        _cardsDrawnPileController.SetPileViewPosition(deckPosition + DistanceBetweenDeckAndPile *deckForwardVector);
-    }
-
-    public void SetDeckRotationAngleView(float angle)
-    {
-        _deckController.SetDeckRotationAngleView(angle);
-    }
-
     public CardData MoveDecksFirstCardToPileData()
     {
         var card = _deckController.DrawCardData();
@@ -84,6 +67,7 @@ public class PlayerController
     {
         var cardView = _deckController.RemoveCardView(cardId);
         _cardsDrawnPileController.AddCardViewToPile(cardView);
+        UpdateCardsLeftTextView();
         await _cardsDrawnPileController.DrawCardViewToPile(cardView, isFacedUp);
     }
 
@@ -92,11 +76,6 @@ public class PlayerController
         //_deckController.CollectCardsView
     }
 
-    public Stack<CardView> GetDrawnCardsView()
-    {
-        return _cardsDrawnPileController.GetDrawnCardsView();
-    }
-    
     public int GetDrawnCardsAmountData()
     {
         return _cardsDrawnPileController.GetDrawnCardsData().Count;
@@ -105,11 +84,6 @@ public class PlayerController
     public CardData RemoveCardDataFromPile()
     {
         return _cardsDrawnPileController.RemoveCardDataFromPile();
-    }
-
-    public void ClearCardsDrawnData()
-    {
-        _cardsDrawnPileController.ClearCardsDrawnData();
     }
 
     public void AddDeckCardView(CardView cardView)
@@ -125,11 +99,7 @@ public class PlayerController
     public async UniTask CollectCardToBottomOfDeckView(CardView cardView)
     {
         await _deckController.CollectCardToDeckBottomView(cardView);
-    }
-
-    public void SetPileRotationAngleView(float angle)
-    {
-        _cardsDrawnPileController.SetPileRotationAngleView(angle);
+        UpdateCardsLeftTextView();
     }
 
     public void RevealAllCardsInDrawnPile()
@@ -137,8 +107,19 @@ public class PlayerController
         _cardsDrawnPileController.RevealAllCardsInDrawnPile();
     }
 
-    public void SetViewsPositions()
+    public void SetPositionView(Vector3 boardSurfaceCenter)
     {
-        
+        _playerView.transform.position = boardSurfaceCenter;
+        _deckController.SetStartingPosition();
+    }
+
+    public void UpdateCardsLeftTextView()
+    {
+        _cardsLeftTextController.SetNumberView(_deckController.CardsAmount);
+    }
+
+    public void SetRotationAngleView(float angle)
+    {
+        _playerView.transform.localRotation = angle.ToQuaternionAroundYAxis();
     }
 }

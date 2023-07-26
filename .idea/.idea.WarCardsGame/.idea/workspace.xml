@@ -3,17 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="96d88ccc-ddf8-467b-aca7-67d0f246843f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WarCardsGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WarCardsGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Materials/BackColor_Red/Red_PlayingCards_Blank_00.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Materials/BackColor_Red/Red_PlayingCards_Blank_00.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Fonts/CARDC___ SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Fonts/CARDC___ SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/Player.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Board/BoardController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Board/BoardController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Board/BoardCreator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Board/BoardCreator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Cards/CardsDeck/CardsDeckController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Cards/CardsDeck/CardsDeckController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Cards/CardsDeck/CardsDeckData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Cards/CardsDeck/CardsDeckData.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Cards/CardsDeck/CardsDeckViewController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Cards/CardsDeck/CardsDeckViewController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Cards/CardsDrawnPile/CardsDrawnPileController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Cards/CardsDrawnPile/CardsDrawnPileController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Cards/CardsDrawnPile/CardsDrawnPileViewController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Cards/CardsDrawnPile/CardsDrawnPileViewController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CardsLeftText/CardsLeftTextController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CardsLeftText/CardsLeftTextController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Commands/CollectDrawnCardsToPlayersDeckCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Commands/CollectDrawnCardsToPlayersDeckCommand.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Commands/PrepareObjectsViewCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Commands/PrepareObjectsViewCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Players/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Players/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/WarLogic/BattleStateService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/WarLogic/BattleStateService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +132,7 @@
       <workItem from="1689861191051" duration="147747000" />
       <workItem from="1690095682036" duration="7757000" />
       <workItem from="1690265944363" duration="1190000" />
-      <workItem from="1690287751483" duration="7683000" />
+      <workItem from="1690287751483" duration="12299000" />
     </task>
     <servers />
   </component>
