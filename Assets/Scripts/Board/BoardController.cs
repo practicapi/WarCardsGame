@@ -2,15 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoardController//: IEndTurnDisposable
+public class BoardController
 {
     private BoardCreator _boardCreator;
     private BoardView _boardView;
-
-public void OnEndTurnEvent()
-{
-    // 1
-}
 
     public BoardController()
     {

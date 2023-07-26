@@ -11,13 +11,17 @@ public class PlayerController
     public  string PlayerId => _playerData.Id;
     private CardsDeckController _deckController;
     private CardsDrawnPileController _cardsDrawnPileController;
+    private CardsLeftTextController _cardsLeftTextController;
+    private PlayerCreator _playerCreator;
     private PlayerData _playerData;
-    private Transform _playerView;
+    private PlayerView _playerView;
     
     public PlayerController()
     {
         _deckController = new CardsDeckController();
         _cardsDrawnPileController = new CardsDrawnPileController();
+        _cardsLeftTextController = new CardsLeftTextController();
+        _playerCreator = new PlayerCreator();
     }
 
     public void SetData(string playerName, IEnumerable<CardData> cardsData)
@@ -26,11 +30,19 @@ public class PlayerController
         _deckController.SetCardsData(cardsData);
     }
     
-    public void CreateCardsView(DeckColor deckColor)
+    public void CreateViews()
     {
-        _playerView = new GameObject("Player_" + _playerData.Id.Substring(0,3)).transform;
-        _deckController.CreateCardsView(_playerView, deckColor);
-        _cardsDrawnPileController.CreatePileView(_playerView);
+        var nameSuffix = _playerData.Id.Substring(0,3);
+        _playerView = _playerCreator.CreatePlayer(nameSuffix);
+        _deckController.CreateCardsView(_playerView.DeckParentTransform);
+        _cardsDrawnPileController.CreatePileView(_playerView.PileParentTransform);
+        _cardsLeftTextController.CreateTextView(_playerView.CardsLeftTextParentTransform);
+    }  
+    
+    public void SetColor(DeckColor deckColor, Color cardsLeftTextColor)
+    {
+        _deckController.SetDeckColor(deckColor);
+        _cardsLeftTextController.SetColorView(cardsLeftTextColor);
     }  
     
     public void PileUpCardsDeckView()
@@ -58,7 +70,6 @@ public class PlayerController
     public CardData MoveDecksFirstCardToPileData()
     {
         var card = _deckController.DrawCardData();
-        Debug.Log("Draw p"+PlayerId.Substring(0,3)+": "+card.Value);
         _cardsDrawnPileController.AddCardDataToPile(card);
 
         return card;
@@ -124,5 +135,10 @@ public class PlayerController
     public void RevealAllCardsInDrawnPile()
     {
         _cardsDrawnPileController.RevealAllCardsInDrawnPile();
+    }
+
+    public void SetViewsPositions()
+    {
+        
     }
 }

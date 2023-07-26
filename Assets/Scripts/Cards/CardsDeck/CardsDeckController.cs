@@ -16,10 +16,15 @@ public class CardsDeckController
         _cardsDeckViewController = new CardsDeckViewController();
     }
 
-    public void CreateCardsView(Transform parent, DeckColor deckColor)
+    public void CreateCardsView(Transform parent)
     {
         var cards = _cardsViewCreator.CreateCards(_cardsDeckData.Cards.ToArray());
-        _cardsDeckViewController.SetDeck(cards, parent, deckColor);
+        _cardsDeckViewController.SetDeck(cards, parent);
+    }
+
+    public void SetDeckColor(DeckColor deckColor)
+    {
+        _cardsDeckViewController.SetDeckColor(deckColor);
     }
 
     public void PileUpCardsView()

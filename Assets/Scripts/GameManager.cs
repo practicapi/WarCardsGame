@@ -56,13 +56,13 @@ public class GameManager : MonoBehaviour
     private void CreateObjectsView()
     {
         BoardController.CreateBoardView();
-        Player1Controller.CreateCardsView(DeckColor.Blue);
-        Player2Controller.CreateCardsView(DeckColor.Red);
+        Player1Controller.CreateViews();
+        Player2Controller.CreateViews();
     }
 
     private void PrepareObjectsView()
     {
-        new PrepareObjectsViewCommand().Execute();
+        new PrepareObjectsViewCommand().Execute().Forget();
     }
 
     private void InitiateControllers()

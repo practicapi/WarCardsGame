@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class BoardCreator
 {
-    private const string BoardPrefabPath = "Prefabs/CasinoItem/Table_Rectangle_00";
+    private const string BoardPrefabPath = "Prefabs/TableBoard";
 
-    public BoardCreator()
-    {
-    }
-    
     public BoardView CreateBoard()
     {
         var boardGO = GameObject.Instantiate(Resources.Load<GameObject>(BoardPrefabPath));

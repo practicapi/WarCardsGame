@@ -12,10 +12,8 @@ public class CardsDeckViewController
     private Vector3 _deckBottomPoint;
     private DeckColor _deckColor;
 
-    public void SetDeck(List<CardView> cards, Transform decksParent, DeckColor deckColor)
+    public void SetDeck(List<CardView> cards, Transform decksParent)
     {
-        _deckColor = deckColor;
-        
         _deckParent = new GameObject("Deck").transform;
         _deckParent.SetParent(decksParent);
         _deckParent.position = Vector3.zero;
@@ -30,7 +28,16 @@ public class CardsDeckViewController
         foreach(var cardView in cards)
         {
             AddCard(cardView);
-            SetCardColorToDeckColor(cardView);
+        }
+    }
+
+    public void SetDeckColor(DeckColor deckColor)
+    {
+        _deckColor = deckColor;
+        
+        foreach(var cardView in _cards)
+        {
+            SetCardColorToDeckColor(cardView.Value);
         }
     }
 
