@@ -16,8 +16,8 @@ public class PlayerController
     private PlayerData _playerData;
     private PlayerView _playerView;
     
-    public int GetDeckCardsAmountData => _deckController.CardsAmount;
-    public int GetDeckCardsAmountView => _deckController.CardsAmountView;
+    public int DeckCardsAmount => _deckController.CardsAmount;
+    public Color Color => _playerData.Color;
     
     public PlayerController()
     {
@@ -31,7 +31,6 @@ public class PlayerController
     {
         _playerData = playerData;
         _deckController.SetData(playerData.DeckData, cardsData);
-        _cardsLeftTextController.SetData(playerData.CardLeftTextData);
     }
     
     public void CreateViews()
@@ -41,12 +40,17 @@ public class PlayerController
         _deckController.CreateCardsView(_playerView.DeckParentTransform);
         _cardsDrawnPileController.CreatePileView(_playerView.PileParentTransform);
         _cardsLeftTextController.CreateTextView(_playerView.CardsLeftTextParentTransform);
-    }  
+    }
+
+    public void RotateCardsLeftText(float angle)
+    {
+        _cardsLeftTextController.RotateText(angle);
+    }
     
     public void SetupViews()
     {
         _deckController.SetupView();
-        _cardsLeftTextController.SetupView();
+        _cardsLeftTextController.SetupView(Color);
     }  
     
     public void PileUpCardsDeckView()

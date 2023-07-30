@@ -8,7 +8,6 @@ public class CardsLeftTextView : MonoBehaviour
     
     public void SetupView(Color color)
     {
-        Debug.Log("SetupView: "+ color);
         _text.color = color;
     }
     

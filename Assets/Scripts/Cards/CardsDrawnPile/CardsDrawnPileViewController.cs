@@ -5,7 +5,7 @@ using UnityEngine;
 public class CardsDrawnPileViewController
 {
     private const float HorizontalOffsetBetweenCards = 0.05f;
-    private const float VerticalOffsetBetweenCards = 0.005f;
+    private const float VerticalOffsetBetweenCards = 0.001f;
     
     private Stack<CardView> _cardsDrawnPile;
     private Transform _pileParent;

@@ -16,5 +16,4 @@ MonoBehaviour:
   _name: Tom
   _deckData:
     _cardBackFaceTexture: {fileID: 2800000, guid: 0802620b3a2859f45bdd189c7bc35d02, type: 3}
-  _cardLeftTextData:
-    _textColor: {r: 0.21568628, g: 0.22745098, b: 0.46666667, a: 1}
+  _color: {r: 0.21568629, g: 0.227451, b: 0.47058827, a: 1}

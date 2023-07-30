@@ -7,6 +7,7 @@ public class BattleStateService
     public BattleState CurrentBattleState { get; private set; } = BattleState.Empty;
     public bool DidPerformAWarDuringCurrentBattle { get; private set; }
     public bool IsCurretlyDuringTurnSequece { get; private set; }
+    public bool DoesHaveAGameWinner { get; private set; }
 
     public void ResetBattleState()
     {
@@ -14,6 +15,11 @@ public class BattleStateService
         DidPerformAWarDuringCurrentBattle = false;
     }
 
+    public void SetDoesHaveAGameWinner(bool isTrue)
+    {
+        DoesHaveAGameWinner = isTrue;
+    }
+    
     public void SetIsDuringTurnSequence(bool isTrue)
     {
         IsCurretlyDuringTurnSequece = isTrue;

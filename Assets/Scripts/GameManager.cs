@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public CardsDeckDataCreator CardsDeckDataCreator { get; private set; }
     public TurnsService TurnsService { get; private set; }
     public DataLoaderService DataLoaderService { get; private set; } 
+    public UIController UIController { get; private set; }
     
     void Awake()
     {
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
         BoardController.CreateBoardView();
         Player1Controller.CreateViews();
         Player2Controller.CreateViews();
+        UIController.CreateUI();
     }
 
     private void PrepareObjectsView()
@@ -79,5 +81,6 @@ public class GameManager : MonoBehaviour
         BattleLogicService = new BattleLogicService();
         BattleStateService = new BattleStateService();
         DataLoaderService = new DataLoaderService();
+        UIController = new UIController();
     }
 }
