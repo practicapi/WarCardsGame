@@ -14,19 +14,33 @@ public class SpaceKeyPressedCommand : BaseCommand
 
     public override async UniTask Execute()
     {
-        switch (_battleStateService.CurrentBattleState)
+        if (_battleStateService.IsCurretlyDuringTurnSequece) return;
+
+        using (new SetCurrentlyDuringTurnDisposable())
         {
-            case BattleState.Empty: await new DrawOneCardForeachPlayerCommand().Execute(); break;
-            case BattleState.Player1Win: 
-                await new CollectDrawnCardsToPlayersDeckCommand(new CollectDrawnCardsToPlayersDeckCommandData(_gm.Player1Controller)).Execute(); 
-                break;
-            case BattleState.Player2Win:
-                await new CollectDrawnCardsToPlayersDeckCommand(new CollectDrawnCardsToPlayersDeckCommandData(_gm.Player2Controller)).Execute(); 
-                break;
-            case BattleState.War:
-                await new DrawFacedDownCardsForeachPlayerCommand().Execute(); 
-                await new DrawOneCardForeachPlayerCommand().Execute();
-                break;
+            switch (_battleStateService.CurrentBattleState)
+            {
+                case BattleState.Empty:
+                    await new DrawOneCardForeachPlayerCommand().Execute();
+
+                    break;
+                case BattleState.Player1Win:
+                    await new CollectDrawnCardsToPlayersDeckCommand(new CollectDrawnCardsToPlayersDeckCommandData(_gm.Player1Controller)).Execute();
+
+                    break;
+                case BattleState.Player2Win:
+                    await new CollectDrawnCardsToPlayersDeckCommand(new CollectDrawnCardsToPlayersDeckCommandData(_gm.Player2Controller)).Execute();
+
+                    break;
+                case BattleState.War:
+                    await new DrawFacedDownCardsForeachPlayerCommand().Execute();
+                    await new DrawOneCardForeachPlayerCommand().Execute();
+
+                    break;
+            }
+            
+            Debug.Log("P1, DeckData: "+_gm.Player1Controller.GetDeckCardsAmountData+", DeckViewData: "+_gm.Player1Controller.GetDeckCardsAmountView);
+            Debug.Log("P2, DeckData: "+_gm.Player2Controller.GetDeckCardsAmountData+", DeckViewData: "+_gm.Player2Controller.GetDeckCardsAmountView);
         }
     }
 }

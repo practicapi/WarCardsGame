@@ -16,15 +16,29 @@ public class DrawFacedDownCardsForeachPlayerCommand : BaseCommand
 
     public override async UniTask Execute()
     {
-        for (int i = 0; i < GameManager.Instance.BattleLogicService.AmountOfFaceDownCardsWhenWar; i++)
+        var amountOfFaceDownCardsWhenWar = GameManager.Instance.BattleLogicService.AmountOfFaceDownCardsWhenWar;
+        var lastCardIndex = amountOfFaceDownCardsWhenWar - 1;
+        for (int i = 0; i < amountOfFaceDownCardsWhenWar; i++)
         {
-            var card1Data = _player1Controller.MoveDecksFirstCardToPileData();
-            var card2Data = _player2Controller.MoveDecksFirstCardToPileData();
+            DrawCardFromPlayer(_player1Controller).Forget();
+            var drawCardFromPlayer2Task = DrawCardFromPlayer(_player2Controller);
+            var isLastCard = i == lastCardIndex;
 
-            _player1Controller.DrawCardFromDeckToPileView(card1Data.Id, false).Forget();
-            _player2Controller.DrawCardFromDeckToPileView(card2Data.Id, false).Forget();
-            
-            await UniTask.Delay(TimeSpan.FromSeconds(SecondsBetweenDrawnCards));
+            if (isLastCard)
+            {
+                await drawCardFromPlayer2Task;
+            }
+            else
+            {
+                drawCardFromPlayer2Task.Forget();
+                await UniTask.Delay(TimeSpan.FromSeconds(SecondsBetweenDrawnCards));
+            }
         }
+    }
+
+    private async UniTask DrawCardFromPlayer(PlayerController player)
+    {
+        var cardData = player.DrawCardFromDeckToPileData();
+        await player.DrawCardFromDeckToPileView(cardData.Id, false);
     }
 }

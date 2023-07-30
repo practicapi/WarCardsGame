@@ -5,7 +5,8 @@ using UnityEngine;
 public class CardsDeckViewController
 {
     private static readonly Quaternion FaceDownRotation = Quaternion.Euler(0,0,180);
-    private const float PileVerticalSpaceBetweenCards = 0.0005f;
+    private const float PileVerticalSpaceBetweenCards = 0.0025f;
+    public int CardsAmount => _cards.Count;
     private float _deckStartingYPosition;
     
     private Dictionary<string,CardView> _cards;
@@ -80,11 +81,6 @@ public class CardsDeckViewController
     {
         _cards.Add(cardView.ID, cardView);
         cardView.transform.SetParent(_deckParent);
-    }
-
-    public Vector3 GetDeckViewForward()
-    {
-        return _deckParent.forward;
     }
 
     public void ResetCardRotation(CardView cardView)

@@ -44,12 +44,22 @@ public class CollectDrawnCardsToPlayersDeckCommand : BaseCommand<CollectDrawnCar
         var totalNumbersOfCardsDrawnFromAllPlayers = numberOfCardsDrawnForEachPlayer * numOfPlayers;
         var secondsBetweenCardsCollected = TotalSecondsToCollectAllCards / totalNumbersOfCardsDrawnFromAllPlayers;
         var timeBetweenCardsCollected = TimeSpan.FromSeconds(secondsBetweenCardsCollected);
+        var lastCardIndex = totalNumbersOfCardsDrawnFromAllPlayers - 1;
         
         for (int i = 0; i < totalNumbersOfCardsDrawnFromAllPlayers; i++)
         {
             var currentPlayerToCollectCardFrom = i % numOfPlayers == 0 ? _player1Controller : _player2Controller;
-            CollectCardFromPlayersPile(currentPlayerToCollectCardFrom).Forget();
-            await UniTask.Delay(timeBetweenCardsCollected);
+            var collectCardFromPlayersPileTask = CollectCardFromPlayersPile(currentPlayerToCollectCardFrom);
+
+            if (i == lastCardIndex)
+            {
+                await collectCardFromPlayersPileTask;
+            }
+            else
+            {
+                collectCardFromPlayersPileTask.Forget();
+                await UniTask.Delay(timeBetweenCardsCollected);
+            }
         }
     }
 
@@ -64,11 +74,8 @@ public class CollectDrawnCardsToPlayersDeckCommand : BaseCommand<CollectDrawnCar
     private async UniTask CollectCardFromPlayersPile(PlayerController playerController)
     {
         var playerCardView = playerController.RemoveCardViewFromPile();
-        _winnerPlayerController.AddDeckCardView(playerCardView);
         await _winnerPlayerController.CollectCardToBottomOfDeckView(playerCardView);
         _winnerPlayerController.AddDeckCardsData(playerController.RemoveCardDataFromPile());
         _winnerPlayerController.UpdateCardsLeftTextView();
     }
-    
-    
 }

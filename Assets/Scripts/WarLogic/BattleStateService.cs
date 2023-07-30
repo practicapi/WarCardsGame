@@ -6,11 +6,17 @@ public class BattleStateService
 {
     public BattleState CurrentBattleState { get; private set; } = BattleState.Empty;
     public bool DidPerformAWarDuringCurrentBattle { get; private set; }
+    public bool IsCurretlyDuringTurnSequece { get; private set; }
 
     public void ResetBattleState()
     {
         CurrentBattleState = BattleState.Empty;
         DidPerformAWarDuringCurrentBattle = false;
+    }
+
+    public void SetIsDuringTurnSequence(bool isTrue)
+    {
+        IsCurretlyDuringTurnSequece = isTrue;
     }
     
     public void RecalculateCurrentBattleState(int player1Card, int player2Card)

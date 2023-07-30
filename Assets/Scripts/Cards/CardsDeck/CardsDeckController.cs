@@ -6,6 +6,7 @@ using Cysharp.Threading.Tasks;
 
 public class CardsDeckController
 {
+    public int CardsAmountView => _cardsDeckViewController.CardsAmount;
     private CardsDeckData _cardsDeckData;
     private CardsViewCreator _cardsViewCreator;
     private CardsDeckViewController _cardsDeckViewController;
@@ -56,18 +57,9 @@ public class CardsDeckController
     
     public async UniTask CollectCardToDeckBottomView(CardView cardView)
     {
+        _cardsDeckViewController.AddCard(cardView);
         await _cardsDeckViewController.MoveCardToDeckBottom(cardView);
         _cardsDeckViewController.SetBackFaceTextureToCard(cardView, _cardsDeckData.DeckBackFaceTexture);
         _cardsDeckViewController.ResetCardRotation(cardView);
-    }
-
-    public void AddCardView(CardView cardView)
-    {
-        _cardsDeckViewController.AddCard(cardView);
-    }
-
-    public void SetStartingPosition()
-    {
-        
     }
 }

@@ -23,8 +23,8 @@ public class PerformTurnCommand : BaseCommand
 
     public override async UniTask Execute()
     {
-        var player1Card = _player1Controller.MoveDecksFirstCardToPileData();
-        var player2Card = _player2Controller.MoveDecksFirstCardToPileData();
+        var player1Card = _player1Controller.DrawCardFromDeckToPileData();
+        var player2Card = _player2Controller.DrawCardFromDeckToPileData();
         
         await DrawCardFromEachPlayer(player1Card, player2Card);
 

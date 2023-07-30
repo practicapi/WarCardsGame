@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CardsDrawnPileViewController
 {
-    private const float HorizontalOffsetBetweenCards = 0.01f;
-    private const float VerticalOffsetBetweenCards = 0.001f;
+    private const float HorizontalOffsetBetweenCards = 0.05f;
+    private const float VerticalOffsetBetweenCards = 0.005f;
     
     private Stack<CardView> _cardsDrawnPile;
     private Transform _pileParent;
@@ -25,7 +25,7 @@ public class CardsDrawnPileViewController
         _cardsDrawnPile.Push(cardView);
     }
 
-    public async UniTask DrawCardToPile(CardView cardView, bool shouldFaceUp = true)
+    public async UniTask AnimateDrawCardToPile(CardView cardView, bool shouldFaceUp = true)
     {
         var cardPositionOffset = CalculateCardPositionOffset();
         var destinationPoint = _pileParent.position + cardPositionOffset;

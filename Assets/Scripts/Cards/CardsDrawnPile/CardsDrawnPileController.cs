@@ -33,9 +33,9 @@ public class CardsDrawnPileController
         _cardsDrawnPileViewController.AddCardToPile(cardView);
     }
 
-    public async UniTask DrawCardViewToPile(CardView cardView, bool shouldFaceUp = true)
+    public async UniTask AnimateDrawCardViewToPile(CardView cardView, bool shouldFaceUp = true)
     {
-        await _cardsDrawnPileViewController.DrawCardToPile(cardView, shouldFaceUp);
+        await _cardsDrawnPileViewController.AnimateDrawCardToPile(cardView, shouldFaceUp);
     }
 
     public CardView RemoveCardViewFromPile()
@@ -43,11 +43,6 @@ public class CardsDrawnPileController
         return _cardsDrawnPileViewController.RemoveCardFromPile();
     }
 
-    public Stack<CardView> GetDrawnCardsView()
-    {
-        return _cardsDrawnPileViewController.GetDrawnCards();
-    }
-    
     public Stack<CardData> GetDrawnCardsData()
     {
         return _cardsDrawnPileData.CardsData;

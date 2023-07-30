@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerController
 {
     private const float DistanceBetweenDeckAndPile = 0.1f;
-    
+
     public  string PlayerId => _playerData.Id;
     private CardsDeckController _deckController;
     private CardsDrawnPileController _cardsDrawnPileController;
@@ -15,6 +15,9 @@ public class PlayerController
     private PlayerCreator _playerCreator;
     private PlayerData _playerData;
     private PlayerView _playerView;
+    
+    public int GetDeckCardsAmountData => _deckController.CardsAmount;
+    public int GetDeckCardsAmountView => _deckController.CardsAmountView;
     
     public PlayerController()
     {
@@ -51,7 +54,7 @@ public class PlayerController
         _deckController.PileUpCardsView();
     }
 
-    public CardData MoveDecksFirstCardToPileData()
+    public CardData DrawCardFromDeckToPileData()
     {
         var card = _deckController.DrawCardData();
         _cardsDrawnPileController.AddCardDataToPile(card);
@@ -69,7 +72,7 @@ public class PlayerController
         var cardView = _deckController.RemoveCardView(cardId);
         _cardsDrawnPileController.AddCardViewToPile(cardView);
         UpdateCardsLeftTextView();
-        await _cardsDrawnPileController.DrawCardViewToPile(cardView, isFacedUp);
+        await _cardsDrawnPileController.AnimateDrawCardViewToPile(cardView, isFacedUp);
     }
 
     public async UniTask CollectCardsView(List<string> cardsIds)
@@ -85,11 +88,6 @@ public class PlayerController
     public CardData RemoveCardDataFromPile()
     {
         return _cardsDrawnPileController.RemoveCardDataFromPile();
-    }
-
-    public void AddDeckCardView(CardView cardView)
-    {
-        _deckController.AddCardView(cardView);
     }
 
     public CardView RemoveCardViewFromPile()
@@ -110,7 +108,6 @@ public class PlayerController
     public void SetPositionView(Vector3 boardSurfaceCenter)
     {
         _playerView.transform.position = boardSurfaceCenter;
-        _deckController.SetStartingPosition();
     }
 
     public void UpdateCardsLeftTextView()
