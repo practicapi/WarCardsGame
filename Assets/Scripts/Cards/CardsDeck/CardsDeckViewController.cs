@@ -10,7 +10,6 @@ public class CardsDeckViewController
     
     private Dictionary<string,CardView> _cards;
     private Transform _deckParent;
-    private DeckColor _deckColor;
 
     public void SetDeck(List<CardView> cards, Transform decksParent)
     {
@@ -31,19 +30,17 @@ public class CardsDeckViewController
         }
     }
 
-    public void SetDeckColor(DeckColor deckColor)
+    public void SetBackFaceTextureToAllCards(Texture2D cardBackFaceTexture)
     {
-        _deckColor = deckColor;
-        
         foreach(var cardView in _cards)
         {
-            SetCardColorToDeckColor(cardView.Value);
+            SetBackFaceTextureToCard(cardView.Value, cardBackFaceTexture);
         }
     }
 
-    public void SetCardColorToDeckColor(CardView cardView)
+    public void SetBackFaceTextureToCard(CardView cardView, Texture2D cardBackFaceTexture)
     {
-        cardView.SetColor(_deckColor);
+        cardView.SetBackFaceTexture(cardBackFaceTexture);
     }
 
     public void PileUpCards(string[] topToBottomCardIds)

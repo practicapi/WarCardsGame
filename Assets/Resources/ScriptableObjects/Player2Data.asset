@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d799c82b94309fe4995110361253aaf0, type: 3}
+  m_Name: Player2Data
+  m_EditorClassIdentifier: 
+  _Id: 1
+  _name: Tom
+  _deckData:
+    _cardBackFaceTexture: {fileID: 2800000, guid: 0802620b3a2859f45bdd189c7bc35d02, type: 3}
+  _cardLeftTextData:
+    _textColor: {r: 0.21568628, g: 0.22745098, b: 0.46666667, a: 1}

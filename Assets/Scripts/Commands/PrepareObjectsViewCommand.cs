@@ -25,12 +25,12 @@ public class PrepareObjectsViewCommand : BaseCommand
         _player1Controller.SetPositionView(boardSurfaceCenter);
         _player1Controller.PileUpCardsDeckView();
         _player1Controller.UpdateCardsLeftTextView();
-        _player1Controller.SetColor(DeckColor.Red, new Color(255, 52, 54, 255));
+        _player1Controller.SetupViews(/*DeckColor.Red, new Color(255, 52, 54, 255)*/);
             
         _player2Controller.SetPositionView(boardSurfaceCenter);
         _player2Controller.SetRotationAngleView(Player2DeckRotation);
         _player2Controller.PileUpCardsDeckView();
         _player2Controller.UpdateCardsLeftTextView();
-        _player2Controller.SetColor(DeckColor.Blue, new Color(55, 58, 119, 255));
+        _player2Controller.SetupViews(/*DeckColor.Blue, new Color(55, 58, 119, 255)*/);
     }
 }

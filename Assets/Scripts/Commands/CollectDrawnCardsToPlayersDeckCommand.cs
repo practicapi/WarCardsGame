@@ -41,13 +41,15 @@ public class CollectDrawnCardsToPlayersDeckCommand : BaseCommand<CollectDrawnCar
         var numberOfCardsDrawnForEachPlayer = _player1Controller.GetDrawnCardsAmountData(); // it doesn't matter which player we choose,
                                                                                             // because they ALWAYS have the same number of drawn cards
         var numOfPlayers = 2;
-        var secondsBetweenCardsCollected = TotalSecondsToCollectAllCards / (numberOfCardsDrawnForEachPlayer * numOfPlayers);
+        var totalNumbersOfCardsDrawnFromAllPlayers = numberOfCardsDrawnForEachPlayer * numOfPlayers;
+        var secondsBetweenCardsCollected = TotalSecondsToCollectAllCards / totalNumbersOfCardsDrawnFromAllPlayers;
         var timeBetweenCardsCollected = TimeSpan.FromSeconds(secondsBetweenCardsCollected);
-
-        for (int i = 0; i < numberOfCardsDrawnForEachPlayer; i++)
+        
+        for (int i = 0; i < totalNumbersOfCardsDrawnFromAllPlayers; i++)
         {
-            await CollectCardFromPlayersPile(_player1Controller, timeBetweenCardsCollected);
-            await CollectCardFromPlayersPile(_player2Controller, timeBetweenCardsCollected);
+            var currentPlayerToCollectCardFrom = i % numOfPlayers == 0 ? _player1Controller : _player2Controller;
+            CollectCardFromPlayersPile(currentPlayerToCollectCardFrom).Forget();
+            await UniTask.Delay(timeBetweenCardsCollected);
         }
     }
 
@@ -59,13 +61,14 @@ public class CollectDrawnCardsToPlayersDeckCommand : BaseCommand<CollectDrawnCar
         await UniTask.Delay(TimeSpan.FromSeconds(SecondsShowingCardsRevealed));
     }
 
-    private async UniTask CollectCardFromPlayersPile(PlayerController playerController, TimeSpan timeToWait)
+    private async UniTask CollectCardFromPlayersPile(PlayerController playerController)
     {
-        _winnerPlayerController.AddDeckCardsData(playerController.RemoveCardDataFromPile());
         var playerCardView = playerController.RemoveCardViewFromPile();
         _winnerPlayerController.AddDeckCardView(playerCardView);
-        _winnerPlayerController.CollectCardToBottomOfDeckView(playerCardView).Forget();
-
-        await UniTask.Delay(timeToWait);
+        await _winnerPlayerController.CollectCardToBottomOfDeckView(playerCardView);
+        _winnerPlayerController.AddDeckCardsData(playerController.RemoveCardDataFromPile());
+        _winnerPlayerController.UpdateCardsLeftTextView();
     }
+    
+    
 }

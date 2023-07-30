@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public BoardController BoardController { get; private set; }
     public CardsDeckDataCreator CardsDeckDataCreator { get; private set; }
     public TurnsService TurnsService { get; private set; }
+    public DataLoaderService DataLoaderService { get; private set; } 
     
     void Awake()
     {
@@ -47,9 +48,12 @@ public class GameManager : MonoBehaviour
     private void SetData()
     {
         var fullCardsDeck = CardsDeckDataCreator.CreateFullShuffledDeck();
-        var halfDeckSize = fullCardsDeck.Length / 2;
-        Player1Controller.SetData("Josh", fullCardsDeck.Take(halfDeckSize));
-        Player2Controller.SetData("Tom", fullCardsDeck.Skip(halfDeckSize));
+        var numberOfPlayers = 2;
+        var numberOfCardsForEachPlayer = fullCardsDeck.Length / numberOfPlayers;
+        var player1Data = DataLoaderService.Load<PlayerData>("Player1Data");
+        Player1Controller.SetData(player1Data, fullCardsDeck.Take(numberOfCardsForEachPlayer));
+        var player2Data = DataLoaderService.Load<PlayerData>("Player2Data");
+        Player2Controller.SetData(player2Data, fullCardsDeck.Skip(numberOfCardsForEachPlayer));
         TurnsService.SetData(Player1Controller.PlayerId);
     }
 
@@ -74,5 +78,6 @@ public class GameManager : MonoBehaviour
         TurnsService = new TurnsService();
         BattleLogicService = new BattleLogicService();
         BattleStateService = new BattleStateService();
+        DataLoaderService = new DataLoaderService();
     }
 }

@@ -23,9 +23,9 @@ public class CardsDeckController
         _cardsDeckViewController.SetDeck(cards, parent);
     }
 
-    public void SetDeckColor(DeckColor deckColor)
+    public void SetupView()
     {
-        _cardsDeckViewController.SetDeckColor(deckColor);
+        _cardsDeckViewController.SetBackFaceTextureToAllCards(_cardsDeckData.DeckBackFaceTexture);
     }
 
     public void PileUpCardsView()
@@ -34,9 +34,9 @@ public class CardsDeckController
         _cardsDeckViewController.PileUpCards(cardsIdsArray);
     }
 
-    public void SetCardsData(IEnumerable<CardData> cardsData)
+    public void SetData(DeckData deckData, IEnumerable<CardData> cardsData)
     {
-        _cardsDeckData = new CardsDeckData(cardsData);
+        _cardsDeckData = new CardsDeckData(deckData, cardsData);
     }
 
     public CardData DrawCardData()
@@ -57,7 +57,7 @@ public class CardsDeckController
     public async UniTask CollectCardToDeckBottomView(CardView cardView)
     {
         await _cardsDeckViewController.MoveCardToDeckBottom(cardView);
-        _cardsDeckViewController.SetCardColorToDeckColor(cardView);
+        _cardsDeckViewController.SetBackFaceTextureToCard(cardView, _cardsDeckData.DeckBackFaceTexture);
         _cardsDeckViewController.ResetCardRotation(cardView);
     }
 

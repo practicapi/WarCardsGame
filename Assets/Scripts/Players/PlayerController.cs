@@ -24,25 +24,26 @@ public class PlayerController
         _playerCreator = new PlayerCreator();
     }
 
-    public void SetData(string playerName, IEnumerable<CardData> cardsData)
+    public void SetData(PlayerData playerData, IEnumerable<CardData> cardsData)
     {
-        _playerData = new PlayerData(playerName);
-        _deckController.SetCardsData(cardsData);
+        _playerData = playerData;
+        _deckController.SetData(playerData.DeckData, cardsData);
+        _cardsLeftTextController.SetData(playerData.CardLeftTextData);
     }
     
     public void CreateViews()
     {
-        var nameSuffix = _playerData.Id.Substring(0,3);
+        var nameSuffix = _playerData.Id;
         _playerView = _playerCreator.CreatePlayer(nameSuffix);
         _deckController.CreateCardsView(_playerView.DeckParentTransform);
         _cardsDrawnPileController.CreatePileView(_playerView.PileParentTransform);
         _cardsLeftTextController.CreateTextView(_playerView.CardsLeftTextParentTransform);
     }  
     
-    public void SetColor(DeckColor deckColor, Color cardsLeftTextColor)
+    public void SetupViews()
     {
-        _deckController.SetDeckColor(deckColor);
-        _cardsLeftTextController.SetColorView(cardsLeftTextColor);
+        _deckController.SetupView();
+        _cardsLeftTextController.SetupView();
     }  
     
     public void PileUpCardsDeckView()
@@ -99,7 +100,6 @@ public class PlayerController
     public async UniTask CollectCardToBottomOfDeckView(CardView cardView)
     {
         await _deckController.CollectCardToDeckBottomView(cardView);
-        UpdateCardsLeftTextView();
     }
 
     public void RevealAllCardsInDrawnPile()

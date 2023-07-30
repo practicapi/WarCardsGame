@@ -15,7 +15,6 @@ public class CardView : MonoBehaviour
     [Header("Move Turned Down")]
     [SerializeField] private float _moveTurnedDownDuration = 1f;
     [SerializeField] private float _turnDownJumpPower = 1f;
-    [SerializeField] private List<ColorToTexture> _colorToTextureList;
     [SerializeField] private MeshRenderer _renderer;
     private Material _material;
     private Transform _transform;
@@ -28,9 +27,9 @@ public class CardView : MonoBehaviour
         _transform = transform;
     }
 
-    public void SetColor(DeckColor color)
+    public void SetBackFaceTexture(Texture2D cardBackFaceTexture)
     {
-        _material.SetTexture(MainTex, _colorToTextureList.Find(x => x.DeckColor == color).Texture2D);
+        _material.SetTexture(MainTex, cardBackFaceTexture);
     }
     
     public async UniTask JumpToPoint(Vector3 destinationPoint, bool shouldFaceUp = true)
