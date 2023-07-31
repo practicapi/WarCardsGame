@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96d88ccc-ddf8-467b-aca7-67d0f246843f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WarCardsGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WarCardsGame/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ImportedAssets/Playing Cards/Image/PlayingCards/BackColor_Blue.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ImportedAssets/Playing Cards/Image/PlayingCards/BackColor_Blue.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ImportedAssets/Playing Cards/Image/PlayingCards/BackColor_Red.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ImportedAssets/Playing Cards/Image/PlayingCards/BackColor_Red.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/Black_PlayingCards_Blank_00.prefab" beforeDir="false" />
@@ -143,7 +144,7 @@
       <workItem from="1690265944363" duration="1190000" />
       <workItem from="1690287751483" duration="16405000" />
       <workItem from="1690382332457" duration="594000" />
-      <workItem from="1690698120284" duration="16395000" />
+      <workItem from="1690698120284" duration="16397000" />
     </task>
     <servers />
   </component>
