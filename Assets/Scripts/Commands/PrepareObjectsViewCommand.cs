@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PrepareObjectsViewCommand : BaseCommand
 {
-    private Vector3 DeckOffsetFromCenter = new (-0.075f, 0, 0.075f);
     private float Player2DeckRotation = 180f;
     
     private PlayerController _player1Controller;

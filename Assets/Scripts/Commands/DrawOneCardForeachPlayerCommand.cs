@@ -25,7 +25,7 @@ public class DrawOneCardForeachPlayerCommand : BaseCommand
         if (_battleLogicService.CheckForGameWinner(_player1Controller.DeckCardsAmount, _player2Controller.DeckCardsAmount, out var gameWinner))
         {
             await new EndGameCommand(gameWinner).Execute();
-            await  UniTask.FromCanceled();
+            await UniTask.FromCanceled();
         }
         
         var player1Card = _player1Controller.DrawCardFromDeckToPileData();

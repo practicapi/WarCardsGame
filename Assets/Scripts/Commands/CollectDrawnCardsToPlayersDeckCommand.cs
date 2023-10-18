@@ -26,7 +26,7 @@ public class CollectDrawnCardsToPlayersDeckCommand : BaseCommand<CollectDrawnCar
 
     public override async UniTask Execute()
     {
-        if (_battleStateService.DidPerformAWarDuringCurrentBattle) // todo move ouside
+        if (_battleStateService.DidPerformAWarDuringCurrentBattle) // todo move outside
         {
             await RevealAllCardsInDrawnPiles();
         }

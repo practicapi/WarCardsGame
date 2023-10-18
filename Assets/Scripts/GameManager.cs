@@ -25,20 +25,14 @@ public class GameManager : MonoBehaviour
         SetData();
         CreateObjectsView();
         PrepareObjectsView();
-        StartGameLogic();
     }
 
-    public void Update()
+    public void Update() // todo move to a new class
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             new SpaceKeyPressedCommand().Execute().Forget();
         }
-    }
-
-    private void StartGameLogic()
-    {
-        
     }
 
     private void SetupSingleton()
